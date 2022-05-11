@@ -3,20 +3,29 @@
 
 #include "filesystem"
 #include "unistd.h"
+#include "stdarg.h"
+
+#include "Define.h"
 
 class Log
 {
 public:
-    Log * Instance()
+    static Log * Instance()
     {
         static Log m_log;
         return &m_log;
     }
 
-    void AddLog(const char * str)
+    void WriteLog(const char * format, ...)
     {
+        char buf[LOGBUFSIZE];
+        va_list list;
+        va_start(list, format);
+        vsnprintf(buf, LOGBUFSIZE, format, list);
+        va_end(list);
+
         FILE * fp = fopen(m_path.c_str(), "a");
-        fwrite(str, 1, sizeof(str), fp);
+        fwrite(buf, 1, sizeof(buf), fp);
         fclose(fp);
     }
 
@@ -31,12 +40,12 @@ private:
     }
     ~Log()
     {
-    };
+    }
 
 private:
     std::string m_path;
 };
 
-#define LOG(...) 
+#define LOG(format, ...) Log::Instance()->WriteLog(format, ##__VA_ARGS__);
 
 #endif
