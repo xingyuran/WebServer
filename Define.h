@@ -5,5 +5,6 @@
 #define MAXLINE 1024
 #define SA struct sockaddr
 #define BACKLOG 10
+#define POOLSIZE 10
 
 #endif

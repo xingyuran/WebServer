@@ -13,7 +13,7 @@ public:
     static Log * Instance()
     {
         static Log m_log;
-        return &m_log;
+        return & m_log;
     }
 
     void WriteLog(const char * format, ...)
