@@ -1,7 +1,6 @@
 #include "Server.h"
 #include "Common.h"
-
-#include "cstring"
+#include "Define.h"
 
 Server::Server(unsigned int port)
 {

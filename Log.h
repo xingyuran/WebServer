@@ -2,7 +2,6 @@
 #define _LOG_H_
 
 #include "filesystem"
-#include "unistd.h"
 #include "stdarg.h"
 
 #include "Define.h"

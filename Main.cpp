@@ -1,6 +1,5 @@
 #include "Server.h"
-
-#include "cstdio"
+#include "Define.h"
 
 int main(int argc, char ** argv)
 {
