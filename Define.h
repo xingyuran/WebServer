@@ -3,7 +3,6 @@
 
 #include <cstring>
 #include <cstdio>
-#include <thread>
 #include <vector>
 #include <queue>
 #include <unistd.h>
