@@ -3,7 +3,9 @@
 
 int main(int argc, char ** argv)
 {
-    Server server(80);
+    Server server;
+    server.run();
+
     getchar();
 
     return 0;

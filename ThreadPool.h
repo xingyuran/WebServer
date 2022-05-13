@@ -21,15 +21,12 @@ private:
     std::queue<T> m_taskQueue;
     std::vector<std::thread> m_threadIDs;
 
-    atomic_int m_busyNum;
-    atomic_int m_liveNum;
-
     std::mutex m_mutex;
     std::condition_variable m_cond;
 };
 
 template <typename T>
-ThreadPool::ThreadPool()
+ThreadPool<T>::ThreadPool()
 {
     for (size_t i = 0; i < POOLSIZE; i++)
     {
@@ -39,7 +36,7 @@ ThreadPool::ThreadPool()
 }
 
 template <typename T>
-ThreadPool::~ThreadPool()
+ThreadPool<T>::~ThreadPool()
 {
     unique_lock<std::mutex> poolLock(m_mutex);
 
@@ -53,7 +50,7 @@ ThreadPool::~ThreadPool()
 }
 
 template <typename T>
-void ThreadPool::AddTask(T task)
+void ThreadPool<T>::AddTask(T task)
 {
     unique_lock<std::mutex> poolLock(m_mutex);
 
@@ -62,7 +59,7 @@ void ThreadPool::AddTask(T task)
 }
 
 template <typename T>
-void Thread::work(void * arg)
+void ThreadPool<T>::work(void * arg)
 {
     unique_lock<std::mutex> poolLock(m_mutex);
 
@@ -79,7 +76,7 @@ void Thread::work(void * arg)
     
     if (task)
     {
-        task.doWork();
+        task.Start();
     }
     
 }

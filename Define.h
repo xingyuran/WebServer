@@ -12,5 +12,7 @@
 #define SA struct sockaddr
 #define BACKLOG 10
 #define POOLSIZE 10
+#define EPOLLEVENTNUM 20
+#define EPOLLNUM 256
 
 #endif
